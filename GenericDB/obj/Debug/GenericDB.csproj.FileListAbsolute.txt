@@ -1,0 +1,17 @@
+c:\users\ifsp\documents\visual studio 2015\Projects\GenericDB\GenericDB\bin\Debug\GenericDB.exe.config
+c:\users\ifsp\documents\visual studio 2015\Projects\GenericDB\GenericDB\obj\Debug\GenericDB.csprojResolveAssemblyReference.cache
+c:\users\ifsp\documents\visual studio 2015\Projects\GenericDB\GenericDB\obj\Debug\GenericDB.Properties.Resources.resources
+c:\users\ifsp\documents\visual studio 2015\Projects\GenericDB\GenericDB\obj\Debug\GenericDB.csproj.GenerateResource.Cache
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\GenericDB.exe
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\GenericDB.pdb
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\EntityFramework.dll
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\System.Data.SQLite.dll
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\EntityFramework.xml
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\bin\Debug\System.Data.SQLite.xml
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\obj\Debug\GenericDB.Form1.resources
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\obj\Debug\GenericDB.exe
+C:\Users\IFSP\Documents\Visual Studio 2015\Projects\GenericDB\GenericDB\obj\Debug\GenericDB.pdb
