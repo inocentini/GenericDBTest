@@ -69,7 +69,7 @@ namespace GenericDB.Util
             {
                 connection.Open();
             }
-            return new SQLiteCommand(query, connection); ;
+            return new SQLiteCommand(query, connection); 
         }
 
         public override IDbConnection GetConnection()
