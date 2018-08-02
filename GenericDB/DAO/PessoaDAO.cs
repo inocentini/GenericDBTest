@@ -19,7 +19,7 @@ namespace GenericDB.DAO
             GenericDatabase gdb = GenericDatabase.GetInstance();
 
             String query = String.Format("DELETE FROM Pessoa WHERE cpf = '{0}'",p.Cpf);
-            gdb.GetCommand(query).ExecuteNonQuery(); ;
+            gdb.GetCommand(query).ExecuteNonQuery();
             gdb.Close();
             
         }

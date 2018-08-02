@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenericDB.Model
 {
-    class Pessoa
+    class Pessoa<T> where T : Pessoa<T>
     {
         private string cpf;
         private string nome;
