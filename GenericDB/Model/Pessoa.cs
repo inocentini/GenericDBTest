@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenericDB.Control;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace GenericDB.Model
 {
-    class Pessoa<T> where T : Pessoa<T>
+    class Pessoa : IEntity
     {
+        private string id;
         private string cpf;
         private string nome;
 
@@ -15,10 +17,12 @@ namespace GenericDB.Model
         {
 
         }
-        public Pessoa(string cpf, string nome)
+
+        public Pessoa(string id, string cpf, string nome)
         {
-            this.Cpf = cpf;
-            this.Nome = nome;
+            this.Id = id;
+            this.cpf = cpf;
+            this.nome = nome;
         }
 
         public string Cpf
@@ -45,6 +49,29 @@ namespace GenericDB.Model
             {
                 nome = value;
             }
+        }
+
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public Dictionary<string, string> Properties()
+        {
+            Dictionary<String, String> properties = new Dictionary<string, string>();
+            properties.Add("id", Id);
+            properties.Add("cpf", Cpf);
+            properties.Add("nome", Nome);
+
+            return properties;
         }
     }
 }
