@@ -10,7 +10,7 @@ namespace GenericDB.Model
     class ForragemDeInverno : IEntity
     {
         private int id;
-        private String desc;
+        private string desc;
         private int qnt;
         private double preco;
 

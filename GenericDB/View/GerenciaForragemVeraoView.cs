@@ -14,8 +14,8 @@ namespace GenericDB.View
 {
     public partial class GerenciaForragemVeraoView : Form
     {
-        ForragemVeraoDAO fvDAO = new ForragemVeraoDAO();
         GenericDBDAO gdb = new GenericDBDAO();
+        ForragemVeraoDAO fvDAO = new ForragemVeraoDAO();
         public GerenciaForragemVeraoView()
         {
             InitializeComponent();
@@ -24,27 +24,25 @@ namespace GenericDB.View
 
         public void fillTable()
         {
-            /*List<ForragemDeVerao> forragens = fvDAO.ListAll();
+            List<ForragemDeVerao> forragens = fvDAO.ListAll();
             dgvForragemVerao.Rows.Clear();
             foreach(ForragemDeVerao fv in forragens)
-                dgvForragemVerao.Rows.Add(fv.Id, fv.Desc, fv.Qnt, fv.Preco);*/
+                dgvForragemVerao.Rows.Add(fv.Id, fv.Desc, fv.Qnt, fv.Preco);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            ForragemDeInverno fi = new ForragemDeInverno();
+            fi.Desc = txtDesc.Text;
+            fi.Qnt = int.Parse(txtQnt.Text);
+            fi.Preco = double.Parse(txtPreco.Text);
+            gdb.Insert(fi);
             /*ForragemDeVerao fv = new ForragemDeVerao();
             fv.Desc = txtDesc.Text;
             fv.Qnt = int.Parse(txtQnt.Text);
             fv.Preco = double.Parse(txtPreco.Text);
-            fvDAO.Insert(fv);
-            fillTable();*/
-
-            ForragemDeInverno fv = new ForragemDeInverno();
-            fv.Desc = txtDesc.Text;
-            fv.Qnt = int.Parse(txtQnt.Text);
-            fv.Preco = double.Parse(txtPreco.Text);
             gdb.Insert(fv);
-            fillTable();
+            fillTable();*/
         }
 
         private void btnEditar_Click(object sender, EventArgs e)

@@ -21,33 +21,30 @@ namespace GenericDB.DAO
 
         public void Insert<T>(T ob)
         {
-            StringBuilder query = new StringBuilder();
-            query.Append("INSERT INTO " + ob.GetType().Name.ToUpper() + "(");
-            for(int i =0; i< ob.GetType().GetProperties().ToArray().Count() - 1; i++)
-            {
-                query.Append(ob.GetType().GetProperties()[i].Name.ToLower() +", ");
-            }
-            query.Append(ob.GetType().GetProperties()[ob.GetType().GetProperties().ToArray().Count() - 1].Name.ToLower() + ") VALUES(");
-
-            for(int i=0; i< ob.GetType().GetProperties().ToArray().Count() - 1; i++)
-            {
-                query.Append("@" + ob.GetType().GetProperties()[i].Name.ToLower() + ", ");
-            }
-            query.Append(ob.GetType().GetProperties()[ob.GetType().GetProperties().ToArray().Count() - 1].Name.ToLower() + ");");
-
-            SQLiteCommand cmd = new SQLiteCommand(query.ToString());
 
             Type type = ob.GetType();
             PropertyInfo[] attrs = ob.GetType().GetProperties();
 
-            foreach(var atts in attrs)
-            {
-                //cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name, atts.GetValue(ob)));
-                Console.WriteLine(atts.Name.ToLower());
-                
-                Console.WriteLine(atts.GetValue(ob));
-            }
+            StringBuilder query = new StringBuilder();
+            query.Append("INSERT INTO " + ob.GetType().Name.ToUpper() + "(");
 
+            for(int i=0; i<attrs.Length -1; i++)
+            {
+                query.Append(attrs[i].Name.ToLower() + ", ");
+            }
+            query.Append(attrs[attrs.Length - 1].Name.ToLower()+ ") VALUES(");
+
+            for(int i =0; i< attrs.Length -1; i++)
+            {
+                query.Append("@" + attrs[i].Name.ToLower() +", ");
+            }
+            query.Append("@" + attrs[attrs.Length - 1].Name.ToLower() + ");");
+            
+
+            SQLiteCommand cmd = new SQLiteCommand(query.ToString());
+
+            foreach (var atts in attrs)
+                cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
             
             db.ExecuteNonQuery(cmd);
 
