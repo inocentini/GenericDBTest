@@ -27,6 +27,7 @@ namespace GenericDB.Util
                 connection.Open();
                 StringBuilder sql = new StringBuilder();
                 sql.AppendLine("CREATE TABLE IF NOT EXISTS PESSOA([id] INTEGER PRIMARY KEY AUTOINCREMENT,[cpf] VARCHAR(32),[nome] VARCHAR(64));");
+                sql.AppendLine("CREATE TABLE IF NOT EXISTS FORRAGEMDEVERAO([id] INTEGER PRIMARY KEY AUTOINCREMENT, [desc] VARCHAR(64), [qnt] INTEGER,[preco] REAL);");
                 SQLiteCommand cmd = new SQLiteCommand(sql.ToString(), connection);
                 try
                 {

@@ -1,5 +1,6 @@
 ﻿using GenericDB.DAO;
 using GenericDB.Model;
+using GenericDB.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -68,6 +69,13 @@ namespace GenericDB
             txtId.Text = dgvPessoas.SelectedRows[0].Cells[0].Value.ToString();
             txtCPF.Text = dgvPessoas.SelectedRows[0].Cells[1].Value.ToString();
             txtNome.Text = dgvPessoas.SelectedRows[0].Cells[2].Value.ToString();
+        }
+
+        private void forragemDeVeraoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GerenciaForragemVeraoView gfvv = new GerenciaForragemVeraoView();
+            gfvv.Show();
+            //this.Dispose();
         }
     }
 }

@@ -36,13 +36,16 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.dgvPessoas = new System.Windows.Forms.DataGridView();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnRemover = new System.Windows.Forms.Button();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnRemover = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.forragemDeVeraoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPessoas)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labNome
@@ -123,6 +126,29 @@
             this.dgvPessoas.TabIndex = 8;
             this.dgvPessoas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPessoas_CellClick);
             // 
+            // id
+            // 
+            this.id.HeaderText = "Id:";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 35;
+            // 
+            // cpf
+            // 
+            this.cpf.DataPropertyName = "dgvCpf";
+            this.cpf.HeaderText = "CPF:";
+            this.cpf.Name = "cpf";
+            this.cpf.ReadOnly = true;
+            this.cpf.Width = 125;
+            // 
+            // nome
+            // 
+            this.nome.DataPropertyName = "dgvNome";
+            this.nome.HeaderText = "Nome:";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            this.nome.Width = 300;
+            // 
             // btnEditar
             // 
             this.btnEditar.Location = new System.Drawing.Point(165, 96);
@@ -151,28 +177,22 @@
             this.txtId.TabIndex = 11;
             this.txtId.Visible = false;
             // 
-            // id
+            // menuStrip1
             // 
-            this.id.HeaderText = "Id:";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 35;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.forragemDeVeraoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(547, 24);
+            this.menuStrip1.TabIndex = 12;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // cpf
+            // forragemDeVeraoToolStripMenuItem
             // 
-            this.cpf.DataPropertyName = "dgvCpf";
-            this.cpf.HeaderText = "CPF:";
-            this.cpf.Name = "cpf";
-            this.cpf.ReadOnly = true;
-            this.cpf.Width = 125;
-            // 
-            // nome
-            // 
-            this.nome.DataPropertyName = "dgvNome";
-            this.nome.HeaderText = "Nome:";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            this.nome.Width = 300;
+            this.forragemDeVeraoToolStripMenuItem.Name = "forragemDeVeraoToolStripMenuItem";
+            this.forragemDeVeraoToolStripMenuItem.Size = new System.Drawing.Size(118, 20);
+            this.forragemDeVeraoToolStripMenuItem.Text = "Forragem de Verao";
+            this.forragemDeVeraoToolStripMenuItem.Click += new System.EventHandler(this.forragemDeVeraoToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -190,9 +210,13 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.labCPF);
             this.Controls.Add(this.labNome);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPessoas)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,6 +238,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
         private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem forragemDeVeraoToolStripMenuItem;
     }
 }
 

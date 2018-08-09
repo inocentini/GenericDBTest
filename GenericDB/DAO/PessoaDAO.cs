@@ -13,10 +13,14 @@ namespace GenericDB.DAO
 {
     class PessoaDAO : GenericDAO
     {
+        Database db;
 
+        public PessoaDAO()
+        {
+            db = Database.GetInstance();
+        }
         public List<Pessoa> ListAll()
         {
-            Database db = Database.GetInstance();
             String query = String.Format("SELECT * FROM Pessoa");
             DataSet ds = db.ExecuteQuery(query);
             
