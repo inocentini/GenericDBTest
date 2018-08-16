@@ -1,5 +1,6 @@
 ﻿using GenericDB.DAO;
 using GenericDB.Model;
+using GenericDB.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,14 @@ namespace GenericDB.View
 {
     public partial class GerenciaForragemVeraoView : Form
     {
-        GenericDBDAO gdb = new GenericDBDAO();
-        ForragemVeraoDAO fvDAO = new ForragemVeraoDAO();
+
+        ForragemDeVeraoDAO fvDAO = new ForragemDeVeraoDAO();
+        
         public GerenciaForragemVeraoView()
         {
             InitializeComponent();
             fillTable();
+            txtId.Text = fvDAO.nextSequence().ToString();
         }
 
         public void fillTable()
@@ -32,17 +35,14 @@ namespace GenericDB.View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            ForragemDeInverno fi = new ForragemDeInverno();
-            fi.Desc = txtDesc.Text;
-            fi.Qnt = int.Parse(txtQnt.Text);
-            fi.Preco = double.Parse(txtPreco.Text);
-            gdb.Insert(fi);
-            /*ForragemDeVerao fv = new ForragemDeVerao();
+            ForragemDeVerao fv = new ForragemDeVerao();
+            fv.Id = int.Parse(txtId.Text);
             fv.Desc = txtDesc.Text;
             fv.Qnt = int.Parse(txtQnt.Text);
             fv.Preco = double.Parse(txtPreco.Text);
-            gdb.Insert(fv);
-            fillTable();*/
+            fvDAO.Insert(fv);
+            fillTable();
+            txtId.Text = fvDAO.nextSequence().ToString();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)

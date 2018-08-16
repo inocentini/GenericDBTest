@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -88,6 +89,70 @@ namespace GenericDB.Util
 
             connection.Close();
             return ds;
+        }
+
+        public SQLiteCommand buildQuery<T>(T ob, string qry)
+        {
+            Type type = ob.GetType();
+            PropertyInfo[] attrs = ob.GetType().GetProperties();
+
+            if (qry.Equals("INSERT INTO "))
+            {
+                StringBuilder query = new StringBuilder();
+                query.Append(qry + ob.GetType().Name.ToUpper() + "(");
+
+                for (int i = 0; i < attrs.Length - 1; i++)
+                {
+                    query.Append(attrs[i].Name.ToLower() + ", ");
+
+                }
+                query.Append(attrs[attrs.Length - 1].Name.ToLower() + ") VALUES(");
+
+
+                for (int i = 0; i < attrs.Length - 1; i++)
+                {
+                    query.Append("@" + attrs[i].Name.ToLower() + ", ");
+                }
+                query.Append("@" + attrs[attrs.Length - 1].Name.ToLower() + ");");
+
+
+                SQLiteCommand cmd = new SQLiteCommand(query.ToString());
+
+                foreach (var atts in attrs)
+                    cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
+                return cmd;
+            }
+            else if (qry.Equals("DELETE FROM "))
+            {
+                StringBuilder query = new StringBuilder();
+                query.Append(qry + ob.GetType().Name.ToUpper() + " WHERE " + attrs[0].Name.ToLower() + "=@" + attrs[0].Name.ToLower());
+
+                SQLiteCommand cmd = new SQLiteCommand(query.ToString());
+
+                foreach (var atts in attrs)
+                    cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
+                return cmd;
+            }
+            else if (qry.Equals("UPDATE "))
+            {
+                StringBuilder query = new StringBuilder();
+                query.Append(qry + ob.GetType().Name.ToUpper() + " SET ");
+
+                for (int i = 0; i < attrs.Length - 1; i++)
+                {
+                    query.Append(attrs[i].Name.ToLower() + "=@" + attrs[i].Name.ToLower() + ", ");
+
+                }
+                query.Append(attrs[attrs.Length - 1].Name.ToLower() + "=@" + attrs[attrs.Length - 1].Name.ToLower() + " WHERE " + attrs[0].Name.ToLower() + " =@" + attrs[0].Name.ToLower());
+
+                SQLiteCommand cmd = new SQLiteCommand(query.ToString());
+
+                foreach (var atts in attrs)
+                    cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
+                return cmd;
+            }
+           
+            return null;
         }
 
     }

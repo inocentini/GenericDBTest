@@ -7,11 +7,11 @@ using GenericDB.Util;
 
 namespace GenericDB.DAO
 {
-    class ForragemInvernoDAO : GenericDBDAO
+    class ForragemDeInvernoDAO : GenericTDAO
     {
         private Database db;
 
-        public ForragemInvernoDAO()
+        public ForragemDeInvernoDAO()
         {
             db = Database.GetInstance();
         }

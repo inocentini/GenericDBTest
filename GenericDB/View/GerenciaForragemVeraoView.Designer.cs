@@ -44,6 +44,7 @@
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.lbId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvForragemVerao)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,11 +192,21 @@
             this.txtId.Size = new System.Drawing.Size(57, 20);
             this.txtId.TabIndex = 12;
             // 
+            // lbId
+            // 
+            this.lbId.AutoSize = true;
+            this.lbId.Location = new System.Drawing.Point(554, 15);
+            this.lbId.Name = "lbId";
+            this.lbId.Size = new System.Drawing.Size(19, 13);
+            this.lbId.TabIndex = 13;
+            this.lbId.Text = "Id:";
+            // 
             // GerenciaForragemVeraoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 320);
+            this.Controls.Add(this.lbId);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnRemover);
@@ -234,5 +245,6 @@
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label lbId;
     }
 }

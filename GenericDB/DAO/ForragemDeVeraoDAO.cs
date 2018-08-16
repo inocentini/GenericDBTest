@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace GenericDB.DAO
 {
-    class ForragemVeraoDAO : GenericDAO
+    class ForragemDeVeraoDAO : GenericTDAO
     {
         Database db;
-        public ForragemVeraoDAO()
+        public ForragemDeVeraoDAO()
         {
             db = Database.GetInstance();
         }

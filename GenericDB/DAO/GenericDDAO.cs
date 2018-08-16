@@ -9,19 +9,20 @@ using System.Threading.Tasks;
 
 namespace GenericDB.DAO
 {
-    class GenericDAO
+    class GenericDDAO
     {
         private Database db;
-        public GenericDAO()
+        public GenericDDAO()
         {
            db = Database.GetInstance();
         }
 
-        public void Insert(IEntity ob)        {
+        public void Insert(IEntity ob)
+        {
             StringBuilder query = new StringBuilder();
             query.Append("INSERT INTO " + ob.GetType().Name.ToUpper() + "(");
-             
-            for(int i =0; i<ob.Properties().Keys.Count -1; i++)
+
+            for (int i = 0; i < ob.Properties().Keys.Count - 1; i++)
                 query.Append(ob.Properties().Keys.ToArray()[i].ToLower() + ", ");
             query.Append(ob.Properties().Keys.ToArray()[ob.Properties().Keys.Count - 1] + ") VALUES (");
 
@@ -31,15 +32,14 @@ namespace GenericDB.DAO
 
             SQLiteCommand cmd = new SQLiteCommand(query.ToString());
 
-            foreach(var prop in ob.Properties())
+            foreach (var prop in ob.Properties())
                 cmd.Parameters.Add(new SQLiteParameter("@" + prop.Key, prop.Value));
 
-            db.ExecuteNonQuery(cmd);            
+            db.ExecuteNonQuery(cmd);
         }
 
         public void Update(IEntity ob)
         {
-            //Database db = Database.GetInstance();
             StringBuilder query = new StringBuilder();
             query.Append("UPDATE " + ob.GetType().Name.ToUpper() + " SET ");
             for (int i = 0; i < ob.Properties().Keys.Count - 1; i++)
@@ -64,7 +64,6 @@ namespace GenericDB.DAO
 
         public void Remove(IEntity ob)
         {
-            //Database db = Database.GetInstance();
             StringBuilder query = new StringBuilder();
             query.Append("DELETE FROM " + ob.GetType().Name.ToUpper() + " WHERE " + ob.Properties().Keys.ToArray()[0].ToString() + "= @" +  ob.Properties().Keys.ToArray()[0].ToLower());
             SQLiteCommand cmd = new SQLiteCommand(query.ToString());

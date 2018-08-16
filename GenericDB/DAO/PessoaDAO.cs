@@ -11,7 +11,7 @@ using System.Data.SQLite;
 
 namespace GenericDB.DAO
 {
-    class PessoaDAO : GenericDAO
+    class PessoaDAO : GenericDDAO
     {
         Database db;
 
@@ -45,9 +45,6 @@ namespace GenericDB.DAO
                 p.Cpf = dr["cpf"].ToString();
                 p.Nome = dr["nome"].ToString();
             }
-
-            
-
             return p;
         }
 

@@ -72,10 +72,10 @@
     <Compile Include="Control\IEntity.cs" />
     <Compile Include="Control\IGeneric.cs" />
     <Compile Include="Control\IPessoa.cs" />
-    <Compile Include="DAO\ForragemInvernoDAO.cs" />
-    <Compile Include="DAO\ForragemVeraoDAO.cs" />
-    <Compile Include="DAO\GenericDAO.cs" />
-    <Compile Include="DAO\GenericDBDAO.cs" />
+    <Compile Include="DAO\ForragemDeInvernoDAO.cs" />
+    <Compile Include="DAO\ForragemDeVeraoDAO.cs" />
+    <Compile Include="DAO\GenericDDAO.cs" />
+    <Compile Include="DAO\GenericTDAO.cs" />
     <Compile Include="DAO\PessoaDAO.cs" />
     <Compile Include="Model\ForragemDeInverno.cs" />
     <Compile Include="Model\ForragemDeVerao.cs" />
