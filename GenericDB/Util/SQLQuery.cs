@@ -8,5 +8,6 @@ namespace GenericDB.Util
 {
     class SQLQuery
     {
+        enum QueryType  {INSERT,UPDATE,DELETE,READ};
     }
 }

@@ -22,23 +22,17 @@ namespace GenericDB.DAO
 
         public void Insert<T>(T ob)
         {
-            string query = string.Format("INSERT INTO ");
-           
-            db.ExecuteNonQuery(db.buildQuery(ob, query));
-
+            db.ExecuteNonQuery(db.buildQuery(ob, QueryType.INSERT));
         }
 
         public void Remove<T>(T ob)
         {
-            string query = string.Format("DELETE FROM ");
-
-            db.ExecuteNonQuery(db.buildQuery(ob, query));
+            db.ExecuteNonQuery(db.buildQuery(ob, QueryType.DELETE));
         }
 
         public void Update<T>(T ob)
         {
-            string query = string.Format("UPDATE ");
-            db.ExecuteNonQuery(db.buildQuery(ob, query));
+            db.ExecuteNonQuery(db.buildQuery(ob, QueryType.UPDATE));
         }
 
         public int nextSequence()

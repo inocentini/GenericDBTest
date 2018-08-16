@@ -91,69 +91,80 @@ namespace GenericDB.Util
             return ds;
         }
 
-        public SQLiteCommand buildQuery<T>(T ob, string qry)
+        public SQLiteCommand buildQuery<T>(T ob, QueryType q)
         {
             Type type = ob.GetType();
             PropertyInfo[] attrs = ob.GetType().GetProperties();
+            StringBuilder query = new StringBuilder();
+            SQLiteCommand cmd = new SQLiteCommand();
 
-            if (qry.Equals("INSERT INTO "))
+            switch (q)
             {
-                StringBuilder query = new StringBuilder();
-                query.Append(qry + ob.GetType().Name.ToUpper() + "(");
+                case QueryType.INSERT:
 
-                for (int i = 0; i < attrs.Length - 1; i++)
-                {
-                    query.Append(attrs[i].Name.ToLower() + ", ");
+                    query.Append("INSERT INTO " + ob.GetType().Name.ToUpper() + "(");
 
-                }
-                query.Append(attrs[attrs.Length - 1].Name.ToLower() + ") VALUES(");
+                    for (int i = 0; i < attrs.Length - 1; i++)
+                    {
+                        query.Append(attrs[i].Name.ToLower() + ", ");
 
-
-                for (int i = 0; i < attrs.Length - 1; i++)
-                {
-                    query.Append("@" + attrs[i].Name.ToLower() + ", ");
-                }
-                query.Append("@" + attrs[attrs.Length - 1].Name.ToLower() + ");");
+                    }
+                    query.Append(attrs[attrs.Length - 1].Name.ToLower() + ") VALUES(");
 
 
-                SQLiteCommand cmd = new SQLiteCommand(query.ToString());
+                    for (int i = 0; i < attrs.Length - 1; i++)
+                    {
+                        query.Append("@" + attrs[i].Name.ToLower() + ", ");
+                    }
+                    query.Append("@" + attrs[attrs.Length - 1].Name.ToLower() + ");");
 
-                foreach (var atts in attrs)
-                    cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
-                return cmd;
+
+                    cmd = new SQLiteCommand(query.ToString());
+
+                    foreach (var atts in attrs)
+                        cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
+                    return cmd;
+
+                case QueryType.DELETE:
+
+                    query = new StringBuilder();
+                    query.Append("DELETE " + ob.GetType().Name.ToUpper() + " WHERE " + attrs[0].Name.ToLower() + "=@" + attrs[0].Name.ToLower());
+
+                     cmd = new SQLiteCommand(query.ToString());
+
+                    foreach (var atts in attrs)
+                        cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
+                    return cmd;
+
+                case QueryType.UPDATE:
+
+                    query = new StringBuilder();
+                    query.Append("UPDATE " + ob.GetType().Name.ToUpper() + " SET ");
+
+                    for (int i = 0; i < attrs.Length - 1; i++)
+                    {
+                        query.Append(attrs[i].Name.ToLower() + "=@" + attrs[i].Name.ToLower() + ", ");
+
+                    }
+                    query.Append(attrs[attrs.Length - 1].Name.ToLower() + "=@" + attrs[attrs.Length - 1].Name.ToLower() + " WHERE " + attrs[0].Name.ToLower() + " =@" + attrs[0].Name.ToLower());
+
+                    cmd = new SQLiteCommand(query.ToString());
+
+                    foreach (var atts in attrs)
+                        cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
+                    return cmd;
+
             }
-            else if (qry.Equals("DELETE FROM "))
-            {
-                StringBuilder query = new StringBuilder();
-                query.Append(qry + ob.GetType().Name.ToUpper() + " WHERE " + attrs[0].Name.ToLower() + "=@" + attrs[0].Name.ToLower());
 
-                SQLiteCommand cmd = new SQLiteCommand(query.ToString());
-
-                foreach (var atts in attrs)
-                    cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
-                return cmd;
-            }
-            else if (qry.Equals("UPDATE "))
-            {
-                StringBuilder query = new StringBuilder();
-                query.Append(qry + ob.GetType().Name.ToUpper() + " SET ");
-
-                for (int i = 0; i < attrs.Length - 1; i++)
-                {
-                    query.Append(attrs[i].Name.ToLower() + "=@" + attrs[i].Name.ToLower() + ", ");
-
-                }
-                query.Append(attrs[attrs.Length - 1].Name.ToLower() + "=@" + attrs[attrs.Length - 1].Name.ToLower() + " WHERE " + attrs[0].Name.ToLower() + " =@" + attrs[0].Name.ToLower());
-
-                SQLiteCommand cmd = new SQLiteCommand(query.ToString());
-
-                foreach (var atts in attrs)
-                    cmd.Parameters.Add(new SQLiteParameter("@" + atts.Name.ToLower(), atts.GetValue(ob)));
-                return cmd;
-            }
-           
             return null;
         }
 
+    }
+
+    public enum QueryType {
+        INSERT,
+        UPDATE,
+        DELETE,
+        READ
     }
 }
