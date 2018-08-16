@@ -54,6 +54,5 @@ namespace GenericDB.DAO
             seq++;
             return seq;
         }
-
     }
 }
