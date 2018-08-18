@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GenericDB.Control
 {
+    /// <summary>
+    /// Interface responsável por fazer a classe que implementa-la ter métodos de Insert, Update e Remove que recebem um objeto genérico do tipo "T".
+    /// </summary>
     interface IGeneric
     {
         void Insert<T>(T ob);

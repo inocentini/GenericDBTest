@@ -9,14 +9,25 @@ using System.Threading.Tasks;
 
 namespace GenericDB.DAO
 {
+    /// <summary>
+    /// Classe de Objeto de Acesso a Dados Genérica com dictionary, responsável por persistir dados de um objeto ao banco de dados.
+    /// </summary>
     class GenericDDAO
     {
         private Database db;
+
+        /// <summary>
+        /// Construtor da classe que quando instanciada atribui a instancia da Database na váriavel Database
+        /// dentro da própria classe para obter o gerenciamento da conexão.
+        /// </summary>
         public GenericDDAO()
         {
            db = Database.GetInstance();
         }
-
+        /// <summary>
+        /// Método de inserção de um objeto genérico que deve ter implementado a interface IEntity para poder recuperar seus atributos. 
+        /// </summary>
+        /// <param name="ob"></param>
         public void Insert(IEntity ob)
         {
             StringBuilder query = new StringBuilder();
@@ -38,6 +49,10 @@ namespace GenericDB.DAO
             db.ExecuteNonQuery(cmd);
         }
 
+        /// <summary>
+        /// Método de atualização de um objeto genérico que deve ter implementado a interface IEntity para poder recuperar seus atributos. 
+        /// </summary>
+        /// <param name="ob"></param>
         public void Update(IEntity ob)
         {
             StringBuilder query = new StringBuilder();
@@ -62,6 +77,10 @@ namespace GenericDB.DAO
              
         }
 
+        /// <summary>
+        /// Método de remoção de um objeto genérico que deve ter implementado a interface IEntity para poder recuperar seus atributos. 
+        /// </summary>
+        /// <param name="ob"></param>
         public void Remove(IEntity ob)
         {
             StringBuilder query = new StringBuilder();

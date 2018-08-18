@@ -9,15 +9,26 @@ using System.Threading.Tasks;
 
 namespace GenericDB.DAO
 {
+    /// <summary>
+    /// Classe de Objeto de Acesso a Dados da classe modelo ForragemDeVerão, responsável por persistir um objeto ao banco de dados
+    /// </summary>
     class ForragemDeVeraoDAO : GenericTDAO
     {
         Database db;
+
+        /// <summary>
+        /// Construtor da classe que quando instanciada atribui a instancia da Database na váriavel Database
+        /// dentro da própria classe para obter o gerenciamento da conexão.
+        /// </summary>
         public ForragemDeVeraoDAO()
         {
             db = Database.GetInstance();
         }
 
-
+        /// <summary>
+        /// Método de listar todos os objetos inseridos no banco de dados, retorna uma lista de ForragemDeVerao
+        /// </summary>
+        /// <returns></returns>
         public List<ForragemDeVerao> ListAll()
         {
             String query = String.Format("SELECT * FROM FORRAGEMDEVERAO");
@@ -29,6 +40,11 @@ namespace GenericDB.DAO
             return lista;
         }
 
+        /// <summary>
+        /// Método que lê apenas um objeto ja inserido no banco de dados dado um id como um parâmetro
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ForragemDeVerao Read(int id) {
             String query = String.Format("SELECT * FROM FORRAGEMDEVERAO WHERE id= '{0}'", id);
             DataSet ds = db.ExecuteQuery(query);

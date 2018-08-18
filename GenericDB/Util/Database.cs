@@ -11,13 +11,21 @@ using System.Windows.Forms;
 
 namespace GenericDB.Util
 {
+    /// <summary>
+    /// Classe de gerenciamento de conexão ao Banco de Dados
+    /// </summary>
     class Database
     {
-        private static SQLiteConnection connection;
+        /// Atributos
+        private static SQLiteConnection connection; 
         private static Database instance;
         private const string URL = "Data Source=database.db";
         private const string NOMEBANCO = "database.db";
 
+
+        /// <summary>
+        /// Construtor da classe Database, verifica se o arquivo do banco está criado senão ele o cria bd com suas respectivas tabelas e faz sua conexão
+        /// </summary>
         public Database()
         {
             connection = new SQLiteConnection(URL);
@@ -40,6 +48,10 @@ namespace GenericDB.Util
             }
         }
 
+        /// <summary>
+        /// Método que retorna a instancia do Banco para pegar a conexão
+        /// </summary>
+        /// <returns></returns>
         public static Database GetInstance()
         {
             if (instance == null)
@@ -49,11 +61,19 @@ namespace GenericDB.Util
             return instance;
         }
 
+        /// <summary>
+        /// Método que retorna a conexão com o BD
+        /// </summary>
+        /// <returns></returns>
         public SQLiteConnection GetConnection()
         {
             return connection;
         }
 
+        /// <summary>
+        /// Método de que dado uma query como parâmetro executa uma query sql no BD.
+        /// </summary>
+        /// <param name="qry"></param>
         public void ExecuteNonQuery(string qry)
         {
             if (connection.State != System.Data.ConnectionState.Open)
@@ -64,6 +84,11 @@ namespace GenericDB.Util
             connection.Close();
         }
 
+
+        /// <summary>
+        /// Método que dado um SQLiteCommand como parâmetro executa uma query sql no BD.
+        /// </summary>
+        /// <param name="cmd"></param>
         public void ExecuteNonQuery(SQLiteCommand cmd)
         {
             if (connection.State != ConnectionState.Open)
@@ -75,6 +100,12 @@ namespace GenericDB.Util
             connection.Close();
         }
 
+
+        /// <summary>
+        /// Método que dado uma query como parâmetro executa e armazena o valor de uma query sql no BD.
+        /// </summary>
+        /// <param name="qry"></param>
+        /// <returns></returns>
         public DataSet ExecuteQuery(string qry)
         {
             if (connection.State != ConnectionState.Open)
@@ -91,6 +122,14 @@ namespace GenericDB.Util
             return ds;
         }
 
+
+        /// <summary>
+        /// Método que constrói uma query sql dado um objeto genérico do tipo "T" e um enumerador para saber o tipo de query sql que será construida.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ob"></param>
+        /// <param name="q"></param>
+        /// <returns></returns>
         public SQLiteCommand buildQuery<T>(T ob, QueryType q)
         {
             Type type = ob.GetType();
@@ -161,10 +200,14 @@ namespace GenericDB.Util
 
     }
 
+    /// <summary>
+    /// Enumarador de tipo de query SQL.
+    /// </summary>
     public enum QueryType {
         INSERT,
         UPDATE,
         DELETE,
-        READ
+        READ,
+        LIST
     }
 }

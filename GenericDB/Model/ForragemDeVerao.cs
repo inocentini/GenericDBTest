@@ -7,17 +7,34 @@ using System.Threading.Tasks;
 
 namespace GenericDB.Model
 {
+    /// <summary>
+    /// Classe Modelo de Forragem de Verão
+    /// </summary>
     class ForragemDeVerao : IEntity
     {
+        /// <summary>
+        /// Atributos da classe ForragemDeVerao
+        /// </summary>
         private int id;
         private String desc;
         private int qnt;
         private double preco;
 
+        /// <summary>
+        /// Construtor vazio
+        /// </summary>
         public ForragemDeVerao()
         {
 
         }
+
+        /// <summary>
+        /// Construtor completo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="desc"></param>
+        /// <param name="qnt"></param>
+        /// <param name="preco"></param>
         public ForragemDeVerao(int id, string desc, int qnt, double preco)
         {
             this.id = id;
@@ -26,6 +43,8 @@ namespace GenericDB.Model
             this.preco = preco;
         }
 
+        /// Métodos Getter e Setter da classe ForragemDeVerão
+        
         public int Id
         {
             get
@@ -77,7 +96,11 @@ namespace GenericDB.Model
                 preco = value;
             }
         }
-
+       
+        /// <summary>
+        /// Método implementado da interface IEntity, retorna um dictionary de chave valor de nome do atributo e seu valor
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> Properties()
         {
             Dictionary<String, String> properties = new Dictionary<string, string>();
